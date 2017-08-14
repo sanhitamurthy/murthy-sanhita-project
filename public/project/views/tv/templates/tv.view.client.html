@@ -1,0 +1,92 @@
+<div ng-include="'views/common/header.html'"></div>
+
+<div class="container">
+
+    <div id="tvView" class="row">
+
+        <div id="tvView-left" class="col-lg-3 col-md-4 col-sm-12">
+            <div ng-show="model.message" class="alert alert-info">
+                {{model.message}}
+            </div>
+            <div ng-show="model.error" class="alert alert-info">
+                {{model.error}}
+            </div>
+
+            <img ng-src="https://image.tmdb.org/t/p/w500/{{model.show.poster_path}}"/>
+            <div class="page-header">
+
+
+                <h2>{{model.show.name}}</h2>
+
+                <p>{{model.show.overview}}</p>
+
+            </div>
+
+            <a ng-click="model.addToFav(model.show)" class="btn btn-success btn-block">Add To Favorite</a>
+
+        </div>
+
+        <div id="profile-right" class="col-lg-9 col-md-8 col-sm-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">Show Details</div>
+                <table class="table table-bordered table-responsive table-striped">
+                    <tdata>
+                        <tr>
+                            <td> Average Show Rating</td>
+                            <td>{{model.show.vote_average}}</td></tr>
+                        <tr>
+                            <td><i class="fa fa-calendar" aria-hidden="true"></i>First Air Date</td>
+                            <td><span ng-bind="model.show.first_air_date | date: 'longDate'"></span></td>
+                        </tr>
+
+                        <tr>
+                            <td> Production Company</td>
+                            <td>
+                                <ul>
+                                <li ng-repeat="company in model.show.production_companies">{{company.name}} </li></ul></td>
+                        </tr>
+                    </tdata>
+                </table>
+
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"> Genres </div>
+                <ul class="list-group" ng-repeat="genre in model.show.genres">
+                    <li class="list-group-item">
+                        {{genre.name}}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><i class="fa fa-users" aria-hidden="true"></i>Review</div>
+                <div class="panel-body">
+                    <textarea class="form-control" rows="3" ng-model="comment"></textarea>
+                    <p></p>
+                    <a ng-click="model.addReview(comment)" class="btn btn-success">Post</a>
+                </div>
+
+                <div ng-if="model.showFromDb.reviews.length" class="list-group" ng-repeat="review in model.showFromDb.reviews">
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">
+                            <a href="#!/profile/{{review.username}}">{{review.username}}</a>
+                        </h4>
+                        <p class="list-group-item-text">
+                            {{review.review}}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+

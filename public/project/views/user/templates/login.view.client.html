@@ -1,0 +1,31 @@
+<div ng-include="'views/common/header.html'"></div>
+
+<div class="container-fluid">
+    <h1>Login</h1>
+    <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
+
+    <label for="username">Username</label>
+    <input id="username"
+           placeholder="username"
+           class="form-control"
+           type="text"
+           ng-model="username"/>
+
+    <label for="password">Password</label>
+    <input  ng-model="password"
+            id="password"
+            placeholder="password"
+            type=password
+            class="form-control"/>
+<div style="padding-top:10px">
+    <a  ng-click="model.login(username,password)" class="btn btn-block btn-primary">Login</a>
+
+
+    <a href="/auth/facebook" class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
+    </a>
+
+    <a href="#!/register" class="btn btn-block btn-success">Register</a>
+</div>
+</div>

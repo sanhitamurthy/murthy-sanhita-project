@@ -1,0 +1,38 @@
+<div ng-include="'views/common/header.html'"></div>
+<div class="container-fluid">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <div ng-show="model.message" class="alert alert-info">
+        {{model.message}}
+    </div>
+    <form>
+        <div class="form-group">
+
+            <label for="email">Email</label>
+            <input ng-model="model.currentUser.email" id="email" type="email" class="form-control"/>
+
+
+            <label for="firstName">First Name</label>
+            <input ng-model="model.currentUser.firstName" id="firstName" class="form-control"/>
+
+
+            <label for="lastName">Last Name</label>
+            <input id="lastName" ng-model="model.currentUser.lastName" class="form-control"/>
+
+            <label for="about">About</label>
+            <input id="about" ng-model="model.currentUser.about" class="form-control"/>
+
+        </div>
+
+    </form>
+
+    <a ng-click="model.updateUser(model.currentUser)"
+       class="btn btn-block btn-success">Update</a>
+
+    <a ng-click="model.unregister(model.currentUser)"
+       class="btn btn-block btn-danger">Unregister</a>
+
+    <a ng-if="model.currentUser.role === 'Admin'" ng-click="model.deleteUser(model.currentUser)"
+       class="btn btn-block btn-danger">Delete</a>
+</div>

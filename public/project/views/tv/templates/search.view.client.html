@@ -1,0 +1,22 @@
+<div ng-include="'views/common/header.html'"></div>
+
+
+
+<div class="container-fluid">
+    <h2>Keyword: {{model.query}}</h2>
+    <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3" ng-repeat="show in model.shows" ng-if="show.backdrop_path && show.overview">
+        <div class="well">
+            <a href="#!/tv/{{show.id}}">
+                <img ng-src="https://image.tmdb.org/t/p/w500/{{show.backdrop_path}}" alt={{show.name}}>
+        </a>
+        <div>
+            <h3 class=""><a href="#!/tv/{{show.id}}">{{show.name}}</a></h3>
+            {{show.overview|limitTo:130}}...
+            <a href="#!/tv/{{show.id}}" class="btn btn-primary btn-xs pull-right" >Read More</a>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
