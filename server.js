@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 //     res.send({message:'hello from the server'});
 // })
 
-app.use(app.express.static(__dirname + '/public'));
+app.use(app.express.static(__dirname + '/public/project'));
 
 // require('./test/app');
 

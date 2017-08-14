@@ -10,12 +10,12 @@ passport.deserializeUser(deserializeUser);
 
 var FacebookStrategy = require('passport-facebook').Strategy;
 var facebookConfig = {
-    // clientID     : "1924159564575285",
-    // clientSecret : "cc59790e939f04211fe9754f9bba461d",
-    // callbackURL  : "http://localhost:4000/auth/facebook/callback",
-    clientID     : process.env.FACEBOOK_CLIENT_ID,
-    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
+    clientID     : "1924159564575285",
+    clientSecret : "cc59790e939f04211fe9754f9bba461d",
+    callbackURL  : "http://localhost:4000/auth/facebook/callback",
+    // clientID     : process.env.FACEBOOK_CLIENT_ID,
+    // clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    // callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
     profileFields: ['id','email']
 };
 passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
