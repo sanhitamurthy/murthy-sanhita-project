@@ -3,7 +3,7 @@ var mongoose=require('mongoose');
 var connectionString='mongodb://localhost/webdev_project';
 
 if(process.env.MLAB_USERNAME){
-    connectionString="monodb://"+
+    connectionString="mongodb://"+
             process.env.MLAB_USERNAME+":"+
             process.env.MLAB_PASSWORD+"@"+
             process.env.MLAB_HOST+":"+
