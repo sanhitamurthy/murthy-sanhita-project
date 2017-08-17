@@ -21,7 +21,6 @@
 
         function renderShows(shows){
            model.popularShows=shows.data.results;
-           console.log(model.popularShows);
         }
 
 

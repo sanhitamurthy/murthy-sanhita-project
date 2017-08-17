@@ -1,0 +1,105 @@
+<div ng-include="'views/common/header.html'"></div>
+
+<div class="container-fluid">
+    {{model.message}}
+    {{model.error}}
+</div>
+
+
+    <div class="container-fluid">
+        <div class="row" >
+
+    <div class="col-xs-12 pull-" style="padding-top: 10px" >
+        <input type="text" class="form-control" placeholder="username" id="username" ng-model="model.user.username"/>
+    </div>
+
+
+    <div class="col-xs-12" style="padding-top: 10px">
+        <input type="text" class="form-control" id="firstName "placeholder="firstName" ng-model="model.user.firstName"/>
+    </div>
+
+    <div class="col-xs-12" style="padding-top: 10px">
+        <input type="text" class="form-control" id="lastName" placeholder="lastName" ng-model="model.user.lastName"/>
+    </div>
+
+    <div class="col-xs-12" style="padding-top: 10px">
+        <input type="text" class="form-control" id="role" placeholder="role" ng-model="model.user.role"/>
+    </div>
+
+        <div class="col-xs-12" style="padding-top: 10px">
+            <span ng-click="model.createUser(model.user)"
+                  class="btn btn-info btn-block">Create User</span>
+        </div>
+
+        <div class="col-xs-12" style="padding-top: 10px">
+    <span ng-click="model.updateUser(model.user)"
+          class="btn btn-info btn-block"> Update User</span>
+        </div>
+    </div>
+</div>
+
+
+<p></p>
+
+
+<div class="container-fluid">
+    <ul class="list-group" style="padding-top: 30px">
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col-xs-3">
+                    <label for="username">
+                    Username
+                    </label>
+                </div>
+
+                <div class="col-xs-3">
+                    <label for="firstName ">
+                    First Name
+                    </label>
+                </div>
+                <div class="col-xs-3">
+                    <label for="lastName">
+                    Last Name
+                    </label>
+                </div>
+                <div class="col-xs-1">
+                    <label for="role">
+                    Role
+                    </label>
+                </div>
+                <div class="col-xs-1 ">
+
+                </div>
+
+            </div>
+        </li>
+
+
+
+        <li ng-repeat="user in model.users" ng-if="user._id!=model.currentUser._id" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-3">
+                    {{user.username}}
+                </div>
+
+                <div class="col-xs-3">
+                    <a ng-click="model.chooseUser(user)">{{user.firstName}}</a>
+                </div>
+
+                <div class="col-xs-3">
+                    {{user.lastName}}
+                </div>
+
+                <div class="col-xs-1">
+                    {{user.role}}
+                </div>
+
+                <div class="col-xs-1  pull-right">
+                    <span ng-click="model.deleteUser(user)"><i class="fa fa-trash" aria-hidden="true" ></i></span>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+</div>
+

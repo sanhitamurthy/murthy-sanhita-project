@@ -27,9 +27,10 @@ app.post('/api/project/user', isAdmin, createUser);
 app.put ('/api/project/user/:userId', updateUser);
 app.delete ('/api/project/user/:userId', isAdmin, deleteUser);
 
-app.post("/api/project/follow/:userId", followUser);
 app.put("/api/project/unfollow/:userId", unfollowUser);
 app.put('/api/project/favorites/:userId/:showId', addToFav);
+app.post("/api/project/follow/:userId", followUser);
+
 
 app.post  ('/api/project/login', passport.authenticate('local'), login);
 app.get   ('/api/project/loggedin', loggedin);
@@ -114,7 +115,6 @@ function logout(req, res) {
 }
 
 function loggedin(req, res) {
-    console.log(req.user);
     if(req.isAuthenticated()) {
         res.json(req.user);
     } else {
@@ -160,7 +160,8 @@ function deleteUser(req, res) {
 function updateUser(req, res) {
     var user = req.body;
     var userId = req.params.userId;
-    if (user.role !== "Fan" && user.role !== "Critic" && user.role !== "Admin") {
+
+    if (user.role !== "Critic" && user.role !== "Fan" && user.role !== "Admin") {
         user.role = "Fan";
     }
     userModel
@@ -185,7 +186,6 @@ function createUser(req, res) {
 }
 
 function findUserById(req, res) {
-
     var userId = req.params['userId'];
 
     userModel
@@ -229,10 +229,8 @@ function findAllUsers(req, res) {
 }
 
 function findUserByCredentials(req, res) {
-
     var username = req.query['username'];
     var password = req.query['password'];
-    console.log([username, password]);
 
     userModel
         .findUserByCredentials(username, password)
@@ -249,7 +247,7 @@ function findUserByCredentials(req, res) {
 
 function findUserByUserName(req, res) {
     var username = req.params['username'];
-    console.log(username);
+
     userModel
         .findUserByUsername(username)
         .then(function (user) {
@@ -296,7 +294,6 @@ function followUser(req, res) {
 }
 
 function unfollowUser(req, res) {
-    console.log(req.body);
     var userId = req.params["userId"];
     var object = req.body;
 

@@ -12,7 +12,6 @@ if(process.env.MLAB_USERNAME){
 
 }
 
-
 mongoose.connect(connectionString);
 
 mongoose.Promise = require('q').Promise;

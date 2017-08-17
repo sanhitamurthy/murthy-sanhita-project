@@ -4,7 +4,7 @@
 
     <div id="tvView" class="row">
 
-        <div id="tvView-left" class="col-lg-3 col-md-4 col-sm-12">
+        <div id="tvView-left" class="col-lg-3 col-md-3 col-sm-6">
             <div ng-show="model.message" class="alert alert-info">
                 {{model.message}}
             </div>
@@ -26,14 +26,14 @@
 
         </div>
 
-        <div id="profile-right" class="col-lg-9 col-md-8 col-sm-12">
+        <div id="profile-right" class="col-lg-9 col-md-9 col-sm-6">
 
             <div class="panel panel-primary">
                 <div class="panel-heading">Show Details</div>
                 <table class="table table-bordered table-responsive table-striped">
                     <tdata>
                         <tr>
-                            <td> Average Show Rating</td>
+                            <td><i class="fa fa-star" aria-hidden="true"></i> Average Show Rating</td>
                             <td>{{model.show.vote_average}}</td></tr>
                         <tr>
                             <td><i class="fa fa-calendar" aria-hidden="true"></i>First Air Date</td>
@@ -41,10 +41,8 @@
                         </tr>
 
                         <tr>
-                            <td> Production Company</td>
-                            <td>
-                                <ul>
-                                <li ng-repeat="company in model.show.production_companies">{{company.name}} </li></ul></td>
+                            <td><i class="fa fa-list-ol" aria-hidden="true"></i>Number Of Seasons</td>
+                            <td><span ng-bind="model.show.number_of_seasons"></span></td>
                         </tr>
                     </tdata>
                 </table>
@@ -55,14 +53,14 @@
                 <div class="panel-heading"> Genres </div>
                 <ul class="list-group" ng-repeat="genre in model.show.genres">
                     <li class="list-group-item">
-                        {{genre.name}}
+                        <a href="#!/genre/{{genre.id}}">{{genre.name}}</a>
                     </li>
                 </ul>
             </div>
 
             <div class="panel panel-default">
                 <div class="panel-heading"><i class="fa fa-users" aria-hidden="true"></i>Review</div>
-                <div class="panel-body">
+                <div class="panel-body" ng-if="model.hasReviewed">
                     <textarea class="form-control" rows="3" ng-model="comment"></textarea>
                     <p></p>
                     <a ng-click="model.addReview(comment)" class="btn btn-success">Post</a>

@@ -99,7 +99,7 @@
             )
 
             .when('/admin', {
-                    templateUrl: 'views/admin/templates/main.view.client.html',
+                    templateUrl: 'views/admin/templates/admin.view.client.html',
                     controller: 'adminController',
                     controllerAs: 'model',
                     resolve: {
@@ -111,7 +111,7 @@
 
 
             .when('/admin/user', {
-                    templateUrl: 'views/admin/templates/main-user.view.client.html',
+                    templateUrl: 'views/admin/templates/admin-user.view.client.html',
                     controller: 'adminUsersController',
                     controllerAs: 'model',
                     resolve: {
@@ -121,12 +121,27 @@
                 }
             )
 
+            .when('/admin/review', {
+                    templateUrl: 'views/admin/templates/admin-review.view.client.html',
+                    controller: 'adminReviewController',
+                    controllerAs: 'model',
+                    resolve: {
+                        currentUser: checkAdmin
+                    }
 
+                }
+            )
 
+            .when('/genre/:genreId', {
+                    templateUrl: 'views/tv/templates/genre.view.client.html',
+                    controller: 'genreController',
+                    controllerAs: 'model',
+                    resolve: {
+                        currentUser: checkCurrentUser
+                    }
 
-
-
-
+                }
+            )
     }
 
 

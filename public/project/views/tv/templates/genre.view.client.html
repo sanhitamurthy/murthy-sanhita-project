@@ -1,0 +1,52 @@
+<div ng-include="'views/common/header.html'"></div>
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="font-size: medium"><i class="fa fa-television" style="color:darkslategrey;" aria-hidden="true"></i>
+        Shows By Genre </div>
+    <div class="panel-body">
+        <div class="row well" ng-repeat="show in model.shows">
+            <div class="media col-sm-4">
+                    <a href="#!/tv/{{show.id}}">
+
+                        <img id="poster" width="150px"
+                             src="https://image.tmdb.org/t/p/w500{{show.backdrop_path}}">
+                    </a>
+                </div>
+
+            <div>
+                <h4 ><a href="#!/tv/{{show.id}}">{{show.name}}</a></h4>
+                <h5>{{show.overview|limitTo:400}}...</h5>
+                <a href="#!/tv/{{show.id}}" class="btn btn-primary btn-xs pull-right" >Read More</a>
+            </div>
+                    </div>
+                </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+
+<!--<div class="container">-->
+    <!--<h2>{{model.genre}}</h2>-->
+    <!--<div class="row well" ng-repeat="show in model.shows">-->
+        <!--<div class="media col-sm-8">-->
+            <!--<div class="media-left media-middle"  ng-if="show.backdrop_path">-->
+                <!--<a href="#!/tv/{{show.id}}">-->
+
+                    <!--<img class="media-object movie-search"-->
+                         <!--src="https://image.tmdb.org/t/p/w500{{show.backdrop_path}}">-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="media-body ng-binding">-->
+                <!--<h2 class="media-heading"><a href="#!/tv/{{show.id}}">{{show.title}}</a></h2>-->
+                <!--{{show.overview}}-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+
+<!--</div>-->
+<!--</div>-->
+
+

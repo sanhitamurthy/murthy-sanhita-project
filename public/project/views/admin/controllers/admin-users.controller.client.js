@@ -1,16 +1,16 @@
 (function(){
     angular
         .module('TVApp')
-        .controller('adminUserController',adminUserController)
+        .controller('adminUsersController',adminUsersController);
 
 
-    function adminUserController(currentUser,useService){
+    function adminUsersController(currentUser,userService){
         var model=this;
         model.currentUser=currentUser;
         model.createUser=createUser;
         model.updateUser=updateUser;
         model.deleteUser=deleteUser;
-        model.selectUser=selectUser;
+        model.chooseUser=chooseUser;
         model.renderError=renderError;
 
         function init(){
@@ -18,33 +18,46 @@
         }
         init();
 
+
+
+        function findAllUsers(){
+            userService
+                .findAllUsers()
+                .then(function(users){
+                    model.users=users;
+                })
+        }
+
+        function renderError(error){
+            model.message="One or more field values are incorrect"
+        }
+
         function createUser(user){
-            if(user.role!=="Fan"||user.role!=="Admin"||user.role!=="Critic"){
-                message=false;
-                model.error="Please assign a role ";
+
+
+            if(user.role!=='Fan'&&user.role!=='Admin'&&user.role!=='Critic'){
+                model.message="Please assign a role ";
                 return
             }
 
             if (user.firstName === null || user.firstName === '' || typeof user.firstName === 'undefined'){
-                model.message=false;
-                model.error = "First Name is required";
+                model.message = "First Name is required";
                 return
             }
 
 
             if (user.lastName === null || user.lastName === '' || typeof user.lastName === 'undefined'){
-                model.message=false;
-                model.error = "Last Name is required";
+                model.message = "Last Name is required";
                 return
             }
 
-            useService
-                .findUserByUsername(user.username)
-                .then(function(){
-                    model.error="Use a different username";
+            userService
+                .findUserByUserName(user.username)
+                .then(function(response){
+                    model.message="Use a different username";
                 },
                 function(){
-                    useService
+                    userService
                         .createUser(user)
                         .then(
                             function(response){
@@ -55,10 +68,11 @@
                 })
 
         }
+
         function updateUser(user){
-            if(user.role!=="Fan"||user.role!=="Admin"||user.role!=="Critic"){
-                message=false;
-                model.error="Please assign a role ";
+            if(user.role!=="Fan"&&user.role!=="Admin"&&user.role!=="Critic"){
+
+                model.message="Please assign a role ";
                 return
             }
 
@@ -70,13 +84,13 @@
 
 
             if (user.lastName === null || user.lastName === '' || typeof user.lastName === 'undefined'){
-                model.message=false;
-                model.error = "Last Name is required";
+
+                model.message = "Last Name is required";
                 return
             }
 
-            useService
-                .updateUser(user.id,user)
+            userService
+                .updateUser(user._id,user)
                 .then(function(response){
                            model.message="User updated";
                            model.user={};
@@ -84,13 +98,13 @@
                        },renderError);
         }
 
-        function selectUser(user){
+        function chooseUser(user){
             model.message="User selected";
             model.user=angular.copy(user);
         }
 
         function deleteUser(user){
-            useService
+            userService
                 .deleteUser(user._id)
                 .then(findAllUsers)
                 .then(function(){
@@ -98,21 +112,6 @@
                 })
 
         }
-
-        function findAllUsers(){
-            useService
-                .findAllUsers()
-                .then(function(users){
-                    model.users=users;
-                })
-        }
-
-        function renderError(error){
-            model.error="One or more field values are incorrect"
-        }
-
-
-
 
     }
 })()

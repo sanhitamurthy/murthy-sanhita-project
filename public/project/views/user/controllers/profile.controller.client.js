@@ -9,8 +9,6 @@
 
         model.currentUser = currentUser;
         model.userName=$routeParams['username'];
-
-
         model.followUser=followUser;
         model.unfollowUser=unfollowUser;
 
@@ -46,7 +44,6 @@
                     for(var f in follows){
                         if(follows[f].username=== model.userName){
                             model.following=true;
-                            console.log(model.following);
                             return;
                         }
 

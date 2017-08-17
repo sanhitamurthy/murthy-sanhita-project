@@ -1,7 +1,7 @@
 <div ng-include="'views/common/header.html'"></div>
 
 <div class="container">
-    <div id="shows-main" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#shows-main" data-slide-to="0" class="active"></li>
@@ -12,34 +12,52 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="./images/friends.png" alt="...">
-                <div class="carousel-caption col-lg-7 col-lg-offeset-2 text-center ">
-                    <h2 class="section-heading">Search TV Shows</h2>
-                    <h4>Search for your favorite TV shows!</h4>
+                <img class="first-slide" src="./images/friends.png" alt="...">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Search TV Shows</h1>
+                        <p>Search for your favorite TV shows!</p>
+                    </div>
                 </div>
+                <!--<div class="carousel-caption col-lg-7 col-lg-offeset-2 text-center ">-->
+                    <!--<h2 class="section-heading">Search TV Shows</h2>-->
+                    <!--<h4>Search for your favorite TV shows!</h4>-->
+                <!--</div>-->
             </div>
             <div class="item">
-                <img src="./images/BBT.jpeg" alt="...">
-                <div class="carousel-caption">
-                    <h2>Follow</h2>
-                    <h4>Follow Critics!</h4>
+                <img class="second-slide"  src="./images/BBT.jpeg" alt="...">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Follow</h1>
+                        <p>Follow your Favorite Critics!</p>
+                    </div>
                 </div>
+                <!--<div class="carousel-caption col-sm-3 col-md-6 col-lg-10">-->
+                    <!--<h2>Follow</h2>-->
+                    <!--<h4>Follow Critics!</h4>-->
+                <!--</div>-->
             </div>
             <div class="item">
-                <img src="./images/SV.jpg" alt="...">
-                <div class="carousel-caption">
-                    <h2>Review</h2>
-                    <h4>Review the shows and read others views!</h4>
+                <img class="third-slide" src="./images/SV.jpg" alt="...">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Review</h1>
+                        <p>Write review and read others views!</p>
+                    </div>
                 </div>
+                <!--<div class="carousel-caption">-->
+                    <!--<h2>Review</h2>-->
+                    <!--<h4>Review the shows and read others views!</h4>-->
+                <!--</div>-->
             </div>
         </div>
 
         <!-- Controls -->
-        <a class="left carousel-control" data-target="#shows-main" role="button" data-slide="prev">
+        <a class="left carousel-control" data-target="#myCarousel" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" data-target="#shows-main" role="button" data-slide="next">
+        <a class="right carousel-control" data-target="#myCarousel" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
@@ -79,4 +97,5 @@
         }
     </script>
 
+</div>
 </div>

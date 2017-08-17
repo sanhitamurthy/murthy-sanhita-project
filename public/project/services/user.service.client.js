@@ -10,20 +10,52 @@
             findUserById: findUserById,
             findUserByUserName: findUserByUserName,
             findUserByCredentials: findUserByCredentials,
-            findAllUsers: findAllUsers,
-            updateUser: updateUser,
-            deleteUser: deleteUser,
-            login: login,
-            loggedin: loggedin,
             logout: logout,
             register: register,
             checkAdmin: checkAdmin,
             unregister: unregister,
             followUser: followUser,
             unfollowUser : unfollowUser,
-            addToFav: addToFav
+            addToFav: addToFav,
+            findAllUsers: findAllUsers,
+            updateUser: updateUser,
+            deleteUser: deleteUser,
+            login: login,
+            loggedin: loggedin
+
         };
         return api;
+
+
+
+        function followUser(userId, follow, followers) {
+            var object = {
+                follow: follow,
+                followers: followers
+            };
+            var url = "/api/project/follow/"+userId;
+            return $http.post(url, object);
+        }
+
+        function unfollowUser(userId, unfollow, followers) {
+            var object = {
+                unfollow: unfollow,
+                followers: followers
+            };
+            var url = "/api/project/unfollow/"+userId;
+            return $http.put(url, object);
+
+        }
+
+
+
+        function findUserById(userId) {
+            var url = "/api/project/user/"+userId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function createUser(user) {
             var url = "/api/project/user";
@@ -33,7 +65,10 @@
                 });
         }
 
+
         function findUserByUserName(username) {
+            console.log(username);
+            console.log("service client")
             var url = "/api/project/user/username/"+username;
             return $http.get(url)
                 .then(function (response) {
@@ -41,13 +76,7 @@
                 });
         }
 
-        function findUserById(userId) {
-            var url = "/api/project/user/"+userId;
-            return $http.get(url)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
+
 
         function findUserByCredentials(username, password) {
             var url = "/api/project/user?username="+username+"&password="+password;
@@ -65,17 +94,19 @@
                 });
         }
 
-        function updateUser(userId, user) {
+
+        function deleteUser(userId) {
             var url = "/api/project/user/"+userId;
-            return $http.put(url, user)
+            return $http.delete(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function deleteUser(userId) {
+
+        function updateUser(userId, user) {
             var url = "/api/project/user/"+userId;
-            return $http.delete(url)
+            return $http.put(url, user)
                 .then(function (response) {
                     return response.data;
                 });
@@ -92,6 +123,7 @@
                     return response.data;
                 });
         }
+
 
         function loggedin() {
             var url = "/api/project/loggedin";
@@ -133,24 +165,7 @@
                 });
         }
 
-        function followUser(userId, follow, followers) {
-            var object = {
-                follow: follow,
-                followers: followers
-            };
-            var url = "/api/project/follow/"+userId;
-            return $http.post(url, object);
-        }
 
-        function unfollowUser(userId, unfollow, followers) {
-            var object = {
-                unfollow: unfollow,
-                followers: followers
-            };
-            var url = "/api/project/unfollow/"+userId;
-            return $http.put(url, object);
-
-        }
 
         function addToFav(favorites, userId) {
             var url = "/api/project/favorites/"+ userId + "/" + favorites.id;

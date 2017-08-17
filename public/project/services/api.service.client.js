@@ -8,7 +8,9 @@
         var api = {
             findAllShows: findAllShows,
             findShowById: findShowById,
-            findShowsByPopularity: findShowsByPopularity
+            findShowsByPopularity: findShowsByPopularity,
+            findShowsByGenreId:findShowsByGenreId,
+            findAllGenres:findAllGenres
         };
 
         var key = '590ee6634acbca823183d896221bd971';
@@ -16,6 +18,18 @@
 
         return api;
 
+
+        function findAllGenres(){
+                var url = tv_url +"/genre/tv/list?api_key="+key;
+            return $http.get(url);
+        }
+
+
+        function findShowsByGenreId(genreId){
+                var url = tv_url +"/discover/tv?api_key="+key+"&with_genres="+genreId;
+                return $http.get(url);
+
+        }
         function findAllShows(query) {
             var url = tv_url + "/search/tv?api_key=" + key + "&query=" + query;
             return $http.get(url);
@@ -31,8 +45,6 @@
             var url = tv_url + "/tv/popular?api_key=" + key;
             return $http.get(url);
         }
-
-
     }
 
 

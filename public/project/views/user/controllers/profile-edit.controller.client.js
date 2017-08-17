@@ -64,7 +64,7 @@
                 .then(function () {
                     $location.url('/');
                 }, function () {
-                    model.error = "Unable to unregister you";
+                    model.message = "Unable to unregister you";
                 });
 
         }

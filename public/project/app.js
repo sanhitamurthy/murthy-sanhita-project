@@ -1,5 +1,5 @@
 (function(){
     angular
-        .module('TVApp',['ngRoute']);
+        .module('TVApp',['ngRoute','backButton']);
 
 })();

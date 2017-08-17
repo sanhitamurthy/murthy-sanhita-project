@@ -1,0 +1,36 @@
+<div ng-include="'views/common/header.html'"></div>
+
+<div class="container-fluid">
+    {{model.message}}
+    {{model.error}}
+</div>
+
+<div class="container-fluid">
+    {{model.reviews}}
+    <div class="panel-default" ng-if="!model.result.length">
+       <h4>No reviews available here</h4>
+    </div>
+
+
+    <div class="panel-default" ng-if="model.result.length">
+        <textarea placeholder="Reviews" ng-model="model.review.review" class="form-control" rows="3"></textarea>
+        <p></p>
+        <a ng-click="model.updateReview(model.review)" class="btn btn-success btn-block">Update Review</a>
+        <p></p>
+        <a ng-click="model.deleteReview(model.review)" class="btn btn-danger btn-block">Delete Review</a>
+    </div>
+
+
+<p></p>
+    <ul class="list-group" ng-if="model.result.length" >
+        <li class="list-group-item active"style="background-color: white;color: black" ng-repeat="review in model.result">
+            <div class="row">
+                <div class="col-xs-10">
+                    <p> {{review.username}}'s review:</p>
+                    <a ng-click="model.selectReview(review)">{{review.review}}</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+

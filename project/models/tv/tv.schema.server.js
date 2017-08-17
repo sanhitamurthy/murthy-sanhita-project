@@ -4,6 +4,7 @@ var tvSchema=mongoose.Schema({
     showId:Number,
     name:String,
     reviews:[{
+        showId:Number,
         userId:String,
         username:String,
         review:String

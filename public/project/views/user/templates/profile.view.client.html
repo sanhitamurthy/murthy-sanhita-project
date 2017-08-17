@@ -1,29 +1,16 @@
 <div ng-include="'views/common/header.html'"></div>
-
-
 <div class="container">
-
     <div id="profile" class="row">
-
-        <div id="profile-left" class="col-lg-3 col-md-4 col-sm-12">
-
+        <div id="profile-left" class="col-lg-3 col-md-4 col-sm-12" ng-if="model.currentUser.role === 'Critic' || model.currentUser.role === 'Fan'">
             <div class="page-header">
-
                 <h1>{{model.user.firstName}} {{model.user.lastName}}</h1>
-
                 <h3>{{model.user.about}}</h3>
-
             </div>
-
-            <div ng-if="model.currentUser._id===model.user._id">
-            <a href="#!/profile/edit" class="btn btn-success btn-block"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-            <a href="#!/logout" class="btn btn-primary btn-block"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
+            <div ng-if="model.currentUser._id===model.user._id" style="padding-top: 5px">
+                <a href="#!/profile/edit" class="btn btn-success btn-block"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                <a href="#!/logout" class="btn btn-danger btn-block"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
             </div>
-
-
-
             <h2 ng-if="model.user._id !== model.currentUser._id && model.user.role==='Critic' &&!model.following ">
-                {{model.message}}
                 <a ng-click="model.followUser()" class="btn btn-success btn-block">
                 <i class="fa fa-fa-forward" aria-hidden="true"></i>
                     Follow
@@ -40,29 +27,24 @@
 
 
         <div id="profile-right" class="col-lg-9 col-md-8 col-sm-12">
-
             <div style="padding-top:30px"></div>
-            <div class="panel panel-default" >
-                <div ng-if="model.currentUser.role === 'Critic'" class="panel-heading" style="font-size: medium"><i class="fa fa-users" style="color:darkslategrey;" aria-hidden="true"></i> Followers</div>
-                <div ng-if="model.currentUser.role === 'Critic'&& !model.currentUser.followers.length" class="panel-body" >
+            <div class="panel panel-default"ng-if="model.currentUser.role === 'Critic'" >
+                <div class="panel-heading" style="font-size: medium"><i class="fa fa-users" style="color:darkslategrey;" aria-hidden="true"></i> Followers<div ng-if="model.currentUser.role === 'Critic'&& !model.currentUser.followers.length" class="panel-body" >
                     You have no followers yet!
                 </div>
 
                 <ul class="list-group" ng-repeat="follower in model.user.followers">
                     <li class="list-group-item">
-
                         <a href="#!/profile/{{follower.username}}">
                             {{follower.username}}
                         </a>
-
                     </li>
                 </ul>
             </div>
-
-
+            </div>
 
             <div style="padding-top:30px"></div>
-            <div class="panel panel-default" >
+            <div class="panel panel-default" ng-if="model.currentUser.role === 'Critic' || model.currentUser.role === 'Fan'" >
                 <div class="panel-heading" style="font-size: medium"><i class="fa fa-users"style="color:darkslategrey;" aria-hidden="true"></i> Following </div>
                 <div class="panel-body" ng-if="model.user._id === model.currentUser._id && !model.user.following.length">
                     You are not following any User!
@@ -82,15 +64,12 @@
                     </li>
                 </ul>
             </div>
-
         </div>
-    </div>
-
+</div>
 
 <div class="row">
-
             <div style="padding-top:30px"></div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" ng-if="model.currentUser.role === 'Critic' || model.currentUser.role === 'Fan'">
                 <div class="panel-heading" style="font-size: medium"><i class="fa fa-television" style="color:darkslategrey;" aria-hidden="true"></i> Favorite Shows</div>
                 <div class="panel-body" ng-if="!model.user.favorites.length">
                     <h4 ng-if="model.currentUser._id === model.user._id">
@@ -100,10 +79,8 @@
                     <h4 ng-if="model.currentUser._id !== model.user._id">
                         <span>The user {{model.user.username}} does not have Favorites yet!</span>
                     </h4>
-
                 </div>
             </div>
-
 
                 <ul class="list-group" ng-repeat="fav in model.user.favorites">
                     <li class="list-group-item">
@@ -115,34 +92,26 @@
                 </ul>
             </div>
 
+<div class="col-lg-12" ng-if="model.currentUser.role === 'Admin'">
+<div class="page-header" >
 
-<div style="padding-top:30px"></div>
-<div class="panel panel-default"  ng-if="model.user.role === 'Admin'">
-    <div class="panel-body" >
-        Welcome Admin!
+    <h1>Welcome Admin!</h1>
+
+    <h3>Please select one of the below options to proceed to make changes: </h3>
+    <p></p>
+    <h5>1.<b> Edit Users</b> : You will be able to view and perform CRUD operations on all the users present in the database.<em>Remember that you will not be able to update the username in the case of an update operation.</em>  </h5>
+    <h5>2.<b> Edit Reviews</b>: You will be able to view and perform CRUD operations on all the reviews for TV shows present in the database. </h5>
+    <h5>3.<b> Logout</b>: You will be able to logout of your profile. </h5>
+</div>
+
+
+<div style="padding-top: 5px">
+    <a href="#!/admin/user" class="btn btn-primary btn-block"><i class="fa fa-pencil" aria-hidden="true"></i>Edit Users</a>
+    <a href="#!/admin/review" class="btn btn-primary btn-block"><i class="fa fa-pencil" aria-hidden="true"></i>Edit Reviews </a>
+    <a href="#!/logout" class="btn btn-danger btn-block"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
+</div>
     </div>
-
-    <div class="container marketing">
-
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-            <div class="col-lg-6">
-                <img class="img-square" src="./project/images/TV.png"  alt="" width="140" height="140">
-                <h2 id="project">Users</h2>
-                <p><a class="btn btn-default" href="https://murthy-sanhita-project.herokuapp.com/"target="_blank" role="button">Edit Users&raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-6">
-                <img class="img-circle" src="./project/images/github-desktop-icon.png"  alt="Generic placeholder image" width="140" height="140">
-                <h2 id="github">Reviews</h2>
-                <p><a class="btn btn-default" href="https://github.com/sanhitamurthy?tab=repositories" target="_blank" role="button">Edit Reviews &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-
-    </div>
-
-
-
-
-
-
+</div>
+</div>
 
 
