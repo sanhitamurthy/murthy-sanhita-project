@@ -16,7 +16,7 @@ var facebookConfig = {
     clientID     : process.env.FACEBOOK_CLIENT_ID,
     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
-    profileFields: ['id','email']
+    profileFields: ['id','displayName','email','gender','link','locale','name','timezone','updated_time','verified']
 };
 passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
@@ -232,7 +232,6 @@ function findUserByCredentials(req, res) {
     var username = req.query['username'];
     var password = req.query['password'];
 
-
     userModel
         .findUserByCredentials(username, password)
         .then(function (user) {
@@ -248,7 +247,7 @@ function findUserByCredentials(req, res) {
 
 function findUserByUserName(req, res) {
     var username = req.params['username'];
-    console.log(username);
+
     userModel
         .findUserByUsername(username)
         .then(function (user) {
@@ -295,7 +294,6 @@ function followUser(req, res) {
 }
 
 function unfollowUser(req, res) {
-    console.log(req.body);
     var userId = req.params["userId"];
     var object = req.body;
 
