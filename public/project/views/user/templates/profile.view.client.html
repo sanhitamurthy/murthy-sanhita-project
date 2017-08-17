@@ -50,7 +50,7 @@
                 <div class="panel-body" ng-if="model.user._id === model.currentUser._id && !model.user.following.length">
                     You are not following any User!
                 </div>
-                    <h4 ng-if="model.user._id !== model.currentUser._id">
+                    <h4 ng-if="model.user._id !== model.currentUser._id && !model.user.following.length">
                         <p style="padding-left: 10px">{{model.user.username}} does follow any user!</p>
                     </h4>
 
