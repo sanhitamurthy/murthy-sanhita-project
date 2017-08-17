@@ -16,7 +16,7 @@ var facebookConfig = {
     clientID     : process.env.FACEBOOK_CLIENT_ID,
     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
-    profileFields: ['id','email']
+    profileFields: ['id','displayName','email','gender','link','locale','name','timezone','updated_time','verified']
 };
 passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
@@ -42,8 +42,8 @@ app.post  ('/api/project/unregister', unregister);
 app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/project/index.html#!/profile/edit',
-        failureRedirect: '/project/index.html#!/login'
+        successRedirect: '/#!/profile/edit',
+        failureRedirect: '/#!/login'
     }));
 
 function facebookStrategy(token, refreshToken, profile, done) {
