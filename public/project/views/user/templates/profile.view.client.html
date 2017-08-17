@@ -34,7 +34,7 @@
                     You have no followers yet!
                 </div>
 
-                <ul class="list-group" ng-repeat="follower in model.user.followers">
+                <ul ng-if="model.user._id === model.currentUser._id&& model.currentUser.role === 'Critic'" class="list-group" ng-repeat="follower in model.user.followers">
                     <li class="list-group-item">
                         <a href="#!/profile/{{follower.username}}">
                             {{follower.username}}
