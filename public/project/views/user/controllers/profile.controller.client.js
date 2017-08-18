@@ -87,8 +87,6 @@
                                     if (res) {
                                         model.message = "You are now following the user";
                                         model.following=true;
-                                        console.log(model.following);
-
 
                                     }
                                     else {
@@ -128,7 +126,6 @@
                             if (res) {
                                 model.message = "You are now not following the user";
                                 model.following = false;
-                                console.log(model.following);
 
                             }
                             else {

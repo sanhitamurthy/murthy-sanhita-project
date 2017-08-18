@@ -13,7 +13,6 @@
 
         function init()
         {
-            console.log(model.genreId)
         findGenreById(model.genreId);
             apiService
             .findShowsByGenreId(model.genreId)

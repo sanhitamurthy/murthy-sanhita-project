@@ -18,7 +18,7 @@
         function init() {
             userService
                 .findUserById(model.userId)
-                .then(renderUser, userError);
+                .then(renderUser, renderError);
         }
 
         init();
@@ -36,7 +36,7 @@
             model.user = user;
         };
 
-        function userError(error) {
+        function renderError(error) {
             model.error = "User not found";
         }
 

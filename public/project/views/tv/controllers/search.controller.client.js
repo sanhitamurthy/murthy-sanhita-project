@@ -13,7 +13,6 @@
         model.currentUser = currentUser;
 
 
-
         function init() {
             apiService
                 .findAllShows(model.query)

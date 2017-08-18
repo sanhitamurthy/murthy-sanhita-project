@@ -96,7 +96,6 @@
                             userService
                                 .addToFav(favorites, model.currentUser._id)
                                 .then(function (response) {
-                                    console.log(response);
                                     model.message = "Added to Favorite";
 
                                 });

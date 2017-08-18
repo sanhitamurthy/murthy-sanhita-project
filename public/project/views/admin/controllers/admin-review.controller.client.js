@@ -15,8 +15,6 @@
 
 
         function init() {
-
-            console.log("controller");
             findAllReviews();
             return;
 
@@ -29,7 +27,6 @@
                 .findAllShows()
                 .then(function (response) {
                     var shows = response.data;
-                    console.log(shows);
                     model.result = [];
                     for (var show in shows) {
                         for (var review in shows[show].reviews) {
